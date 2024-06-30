@@ -1,6 +1,6 @@
-from torchvision import datasets
+import torch 
+import torch.nn as nn
 
-# MNIST 데이터셋 로드
-PATH = "./my_deepLearning"
-train_dataset = datasets.MNIST(PATH, train=True, download=True)
-test_dataset = datasets.MNIST(PATH, train=False, download=True)
+class CNN(nn.Module):
+    def __init__(self):
+        super.__init__()
