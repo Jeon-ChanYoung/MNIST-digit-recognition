@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-
 # MNIST 데이터셋 로드
 PATH = "./my_deepLearning"
 train_dataset = datasets.MNIST(PATH, train=True, download=True)
@@ -19,6 +18,9 @@ X_train = train_dataset.data / 255
 X_test = test_dataset.data / 255
 y_train = train_dataset.targets
 y_test = test_dataset.targets
+
+#2차원 (높이, 너비)에서 3차원 (채널, 높이, 너비)형태로 변환
+X_train, X_test = X_train.unsqueeze(1), X_test.unsqueeze(1)
 
 train_dset = TensorDataset(X_train, y_train)
 test_dset = TensorDataset(X_test, y_test)
