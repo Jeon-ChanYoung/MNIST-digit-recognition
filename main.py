@@ -2,6 +2,7 @@ from torchvision import datasets
 from torch.utils.data import TensorDataset, DataLoader
 from CNN_model import CNN
 import numpy as np
+import torch
 import torch.nn as nn
 import torch.optim as optim
 
@@ -19,7 +20,43 @@ X_test = test_dataset.data / 255
 y_train = train_dataset.targets
 y_test = test_dataset.targets
 
+train_dset = TensorDataset(X_train, y_train)
+test_dset = TensorDataset(X_test, y_test)
+train_loader = DataLoader(train_dset, batch_size=32, shuffle=True)
+test_loader = DataLoader(test_dset, batch_size=32, shuffle=False)
+
 model = CNN()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.0001)
 
+def train(model:CNN, optimizer, criterion, loader):
+    accuracy = 0
+    model.train()
+
+    for X,y in loader:
+        optimizer.zero_grad()
+        hypothesis = model(X)
+        loss = criterion(hypothesis, y)
+        loss.backward()
+        optimizer.step()
+        predict = torch.argmax(hypothesis, 1)
+        acc = (predict == y).float().mean()
+        accuracy += acc.item()
+    return accuracy / len(loader)
+
+def evaluate(model:CNN, loader):
+    accuracy = 0
+    model.eval()
+
+    with torch.no_grad():
+        for X,y in loader:
+            hypothesis = model(X)
+            predict = torch.argmax(hypothesis, 1)
+            acc = (predict == y).float().mean()
+            accuracy += acc.item()
+        return accuracy / len(loader)
+
+for epoch in range(1, 11):
+    train_accuracy = train(model, optimizer, criterion, train_loader)
+    test_accuracy = evaluate(model, test_loader)
+    print(f'{epoch}회 학습세트 : {train_accuracy} | 테스트세트 " {test_accuracy}')
