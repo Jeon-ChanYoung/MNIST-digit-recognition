@@ -1,4 +1,4 @@
-# MNIST-numeric-recognition
+# MNIST-digit-recognition
  - MNIST 데이터를 이용해 숫자 판별 모델을 만들기
  - 단순히 웹사이트에서 0에서 9 사이의 숫자를 마우스로 그리고, 모델이 그 숫자를 추정하여 확률 표로 제시하는 기능이다.
 # 실행방법  
