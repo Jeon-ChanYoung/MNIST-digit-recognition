@@ -1,19 +1,87 @@
-#canvas {
-    border: 1px solid black;
-    background-color: white;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.probability-bar {
-    height: 20px;
-    background-color: lightblue;
-    margin: 2px 0;
+#main-container {
+    display: flex;
+    gap: 20px;
+}
+
+#display-container {
+    width: 400px;
+    height: 450px;
+}
+
+h1 {
+    color: #333;
+}
+
+#canvas {
+    border: 2px solid #333;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#predict-container {
+    width: 400px;
+}
+
+h2 {
+    color: #333;
 }
 
 .probability-container {
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .probability-label {
     width: 30px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.probability-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.probability-bar {
+    height: 100%;
+    background-color: #aec6cf;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.probability-percentage {
+    margin-left: 10px;
+    color: #333;
 }
