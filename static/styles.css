@@ -80,12 +80,13 @@ h2 {
 
 .probability-bar {
     height: 100%;
-    background-color: #aec6cf;
+    background-color: #29bbff;
     border-radius: 15px;
     transition: width 0.3s ease;
 }
 
 .probability-percentage {
+    width: 30px;
     margin-left: 20px;
     color: #333;
     font-size: 18px;
@@ -96,4 +97,19 @@ h2 {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+.highest-probability {
+    font-weight: bold;
+    /* 예: 가장 높은 확률을 가진 숫자를 굵게 표시 */
+    color: red;
+    /* 예: 가장 높은 확률을 가진 숫자의 색상을 빨간색으로 지정 */
+}
+
+.highest-probability .probability-bar {
+    background-color: #fa7474;
+}
+
+.highest-probability .probability-percentage {
+    color: red;
 }

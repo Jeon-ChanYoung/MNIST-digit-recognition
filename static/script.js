@@ -54,9 +54,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function displayProbabilities(probabilities) {
         const container = document.getElementById('probabilities');
         container.innerHTML = '';
+
+        let highestProbabilityIndex = 0;
+        let highestProbability = probabilities[0];
+
+        // 가장 높은 확률을 가진 숫자의 인덱스 찾기
+        for (let i = 1; i < probabilities.length; i++) {
+            if (probabilities[i] > highestProbability) {
+                highestProbability = probabilities[i];
+                highestProbabilityIndex = i;
+            }
+        }
+
         probabilities.forEach((prob, index) => {
             const probContainer = document.createElement('div');
             probContainer.className = 'probability-container';
+            if (index === highestProbabilityIndex) {
+                probContainer.classList.add('highest-probability'); // 가장 높은 확률을 가진 숫자에 클래스 추가
+            }
 
             const label = document.createElement('div');
             label.className = 'probability-label';
