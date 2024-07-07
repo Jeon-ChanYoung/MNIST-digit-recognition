@@ -1,4 +1,4 @@
-# my_deepLearning  
+# MNIST-numeric-recognition
  - MNIST 데이터를 이용해 숫자 판별 모델을 만들기
 # 실행방법  
  - code 복사하여 git clone을 한다.    
