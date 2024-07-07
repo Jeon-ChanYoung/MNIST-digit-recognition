@@ -11,12 +11,12 @@ body {
 
 #main-container {
     display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 
 #display-container {
-    width: 400px;
-    height: 450px;
+    width: 500px;
+    height: 600px;
 }
 
 h1 {
@@ -32,14 +32,15 @@ h1 {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 15px 25px;
     margin: 5px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
 button:hover {
@@ -47,41 +48,52 @@ button:hover {
 }
 
 #predict-container {
-    width: 400px;
+    width: 500px;
 }
 
 h2 {
     color: #333;
+    font-size: 24px;
 }
 
 .probability-container {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .probability-label {
-    width: 30px;
+    width: 40px;
     text-align: right;
-    margin-right: 10px;
+    margin-right: 20px;
+    font-size: 18px;
 }
 
 .probability-bar-container {
-    width: 100%;
-    height: 20px;
+    width: 80%;
+    height: 30px;
     background-color: #f0f0f0;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .probability-bar {
     height: 100%;
     background-color: #aec6cf;
-    border-radius: 10px;
+    border-radius: 15px;
     transition: width 0.3s ease;
 }
 
 .probability-percentage {
-    margin-left: 10px;
+    margin-left: 20px;
     color: #333;
+    font-size: 18px;
+}
+
+#result {
+    /* 강조된 색깔 */
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
