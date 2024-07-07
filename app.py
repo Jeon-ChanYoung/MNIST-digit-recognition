@@ -4,21 +4,21 @@ from io import BytesIO
 from PIL import Image, ImageOps
 import torch
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
 from CNN_model import CNN1
 
 app = Flask(__name__)
 
 # 모델 정의 및 로드
 model = CNN1()
-model.load_state_dict(torch.load('model_parameter/CNN_Model2_MNIST.pt'))
+model.load_state_dict(torch.load('./model_parameter/CNN_Model2_MNIST.pt'))
 model.eval()
 
 # 이미지 전처리 함수
 def preprocess_image(image):
+    # 이미지 흑백 변환 및 반전
     image = image.convert('L')
     image = ImageOps.invert(image)
-
+    
     transform = transforms.Compose([
         transforms.Resize((28, 28)),
         transforms.ToTensor(),
@@ -42,9 +42,10 @@ def predict():
 
     with torch.no_grad():
         output = model(image)
-        prediction = output.argmax(dim=1, keepdim=True)
+        probabilities = torch.softmax(output, dim=1).numpy().flatten()
+        prediction = output.argmax(dim=1, keepdim=True).item()
 
-    return jsonify({'digit': prediction.item()})
+    return jsonify({'digit': prediction, 'probabilities': probabilities.tolist()})
 
 if __name__ == '__main__':
     app.run(debug=True)

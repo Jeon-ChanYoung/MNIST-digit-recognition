@@ -1,0 +1,19 @@
+#canvas {
+    border: 1px solid black;
+    background-color: white;
+}
+
+.probability-bar {
+    height: 20px;
+    background-color: lightblue;
+    margin: 2px 0;
+}
+
+.probability-container {
+    display: flex;
+    align-items: center;
+}
+
+.probability-label {
+    width: 30px;
+}
