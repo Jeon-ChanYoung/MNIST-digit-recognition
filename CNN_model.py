@@ -1,5 +1,6 @@
 import torch.nn as nn
 
+# 10회 학습세트 : 98.31% | 테스트세트 " 98.85%
 class CNN(nn.Module):
     def __init__(self):
         super().__init__()
@@ -25,4 +26,28 @@ class CNN(nn.Module):
         x = self.layer3(x)
         x = self.output(x)
         return x
-    
+
+# 10회 학습세트 : 99.2300% | 테스트세트 " 98.8718% (lr = 0.0001)
+# 10회 학습세트 : 99.7850% | 테스트세트 " 99.0116% (lr = 0.001)
+class CNN1(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(1, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(64 * 7 * 7, 128),  # assuming input images are 28x28 pixels
+            nn.ReLU(),
+            nn.Linear(128, 10)
+        )
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)  # flatten the tensor
+        x = self.classifier(x)
+        return x

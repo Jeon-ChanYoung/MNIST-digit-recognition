@@ -1,6 +1,6 @@
 from torchvision import datasets
 from torch.utils.data import TensorDataset, DataLoader
-from CNN_model import CNN
+from CNN_model import CNN, CNN1
 import numpy as np
 import torch
 import torch.nn as nn
@@ -27,9 +27,9 @@ test_dset = TensorDataset(X_test, y_test)
 train_loader = DataLoader(train_dset, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_dset, batch_size=32, shuffle=False)
 
-model = CNN()
+model = CNN1()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.0001)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 def train(model:CNN, optimizer, criterion, loader):
     accuracy = 0
@@ -58,7 +58,10 @@ def evaluate(model:CNN, loader):
             accuracy += acc.item()
         return accuracy / len(loader)
 
+
 for epoch in range(1, 11):
     train_accuracy = train(model, optimizer, criterion, train_loader)
     test_accuracy = evaluate(model, test_loader)
-    print(f'{epoch}회 학습세트 : {train_accuracy} | 테스트세트 " {test_accuracy}')
+    print(f'{epoch}회 학습세트 : {train_accuracy*100:.4f}% | 테스트세트 " {test_accuracy*100:.4f}%')
+
+torch.save(model.state_dict(), './my_deepLearning/model_parameter/CNN_Model2_MNIST.pt')
